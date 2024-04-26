@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <float.h>
 
 typedef double (function)(double[]);
 
@@ -19,16 +18,13 @@ double divide(double args[]) {
   return args ? args[0] / args[1] :  2.0;
 }
 
-double stack[4] = { 0.0, 0.0, 0.0, 0.0 };
+double stack[4];
 int top = 0;
 
 void push(double val) {
   stack[top++] = val;
 }
 
-double pop() {
-  return stack[top--];
-}
 
 double apply(function f) {
   int arity = f(NULL);
@@ -36,17 +32,29 @@ double apply(function f) {
   return f(&stack[top]);
 }
 
+void show() {
+  for(int i = 0; i < top; i++) {
+    printf("%d : %f\n", i, stack[i]);
+  }
+  printf("--------------\n");
+}
+
 int main(int argc, char **argv) {
   push(2.0);
   push(3.0);
   push(4.0);
+  show();
   push(apply(&multiply));
+  show();
   push(apply(&add));
+  show();
   push(7.0);
+  show();
   push(apply(&divide));
+  show();
   push(1.0);
+  show();
   push(apply(&subtract));
-  
-  printf("%d : %f", top, stack[top - 1]);
+  show();
   return(0);
 }
