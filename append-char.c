@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 void usage(char *arg) {
   fprintf(stderr,
@@ -9,7 +10,7 @@ void usage(char *arg) {
 	  "\n"
 	  "      'c' : copy characters with getc/putc\n"
 	  "      'l' : copy lines with fgets/fputs\n"
-	  "      'c' : copy bytes with fread/fwrite\n"
+	  "      'b' : copy bytes with fread/fwrite\n"
 	  "\n"
 	  "from-file : existing file opened for reading (if ommitted, read from stdin)\n"
 	  "      '-' : read from stdin instead\n"
